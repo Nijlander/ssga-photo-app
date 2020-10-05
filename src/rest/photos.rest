@@ -1,0 +1,21 @@
+DELETE http://localhost:3000/api/v1/photos/4
+Accept: application/json
+
+###
+POST http://localhost:3000/api/v1/photos
+Content-Type: application/json
+
+{
+  "photoUrl": "https://www.wallpapertip.com/wmimgs/3-35636_download-nature-wallpapers-full-hd-1080p-photo-desktop.jpg",
+  "title": "Added title 1",
+  "location": "Added location 1",
+  "date": "Added date 1"
+}
+
+###
+GET http://localhost:3000/api/v1/photos
+Accept: application/json
+
+###
+
+

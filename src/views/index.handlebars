@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SSGA - Photo Album</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: "Poppins", serif;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div.slideshow {
+            height: 100vh;
+            width: 100vw;
+            background: #000;
+        }
+
+        div.slide-image {
+            width: inherit;
+            height: inherit;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        div.overlay {
+            width: inherit;
+            height: inherit;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        div.slide-information {
+            display: block;
+            position: absolute;
+            bottom: 50px;
+            right: 100px;
+            align-self: center;
+        }
+
+        div.slide-information h1 {
+            color: #fff;
+            font-weight: 400;
+            display: block;
+            margin: 0;
+            padding: 0;
+            font-size: 5em;
+        }
+
+        p.slide-date {
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-weight: 200;
+            font-size: 1.2em;
+        }
+
+        p.slide-location {
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-weight: 400;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+<div class="slideshow">
+    {{#each photos}}
+        <div class="slide-image" style="background-image: url('{{photoUrl}}')">
+            <div class="overlay">
+                <div class="slide-information">
+                    <h1>{{title}}</h1>
+                    <p class="slide-date">{{date}}</p>
+                    <p class="slide-location">{{location}}</p>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+<script type="text/javascript">
+    let myIndex = 0;
+
+    carousel()
+
+    function carousel() {
+        let x = document.getElementsByClassName('slide-image');
+
+        for (let j = 0; j < x.length; j++) {
+            x[j].style.display = 'none';
+        }
+
+        myIndex++;
+
+        if (myIndex > x.length) {
+            myIndex = 1;
+            location.reload();
+        }
+
+        x[myIndex - 1].style.display = "block";
+
+        setTimeout(carousel, 3000);
+    }
+</script>
+</body>
+</html>
